@@ -5,7 +5,7 @@ const socials = [
   {
     icon: SiInstagram,
     label: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/rjvanshikaparmar?igsh=YXozeDh4bzkwcWgx",
     ocid: "contact.instagram.button",
     color: "hover:text-pink-400",
   },

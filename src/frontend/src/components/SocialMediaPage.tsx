@@ -14,7 +14,7 @@ const socialPlatforms = [
     name: "Instagram",
     handle: "@rjvanshikaparmar",
     icon: SiInstagram,
-    href: "#",
+    href: "https://www.instagram.com/rjvanshikaparmar?igsh=YXozeDh4bzkwcWgx",
     ocid: "social.instagram.card",
     hoverColor:
       "group-hover:border-pink-500/60 group-hover:shadow-[0_0_24px_oklch(0.6_0.22_350/0.35)]",
@@ -51,9 +51,9 @@ const socialPlatforms = [
   {
     id: "youtube",
     name: "YouTube",
-    handle: "RJ Vanshika Parmar",
+    handle: "@rjvanshika17",
     icon: SiYoutube,
-    href: "#",
+    href: "https://youtube.com/@rjvanshika17?si=fKoDiJf3F88d8lrF",
     ocid: "social.youtube.card",
     hoverColor:
       "group-hover:border-red-500/60 group-hover:shadow-[0_0_24px_oklch(0.55_0.22_25/0.35)]",
