@@ -98,9 +98,9 @@ export default function AboutSection() {
 
               {/* Portrait image */}
               <img
-                src="/assets/uploads/Screenshot_2026-03-12-18-38-24-30_e5d3893ac03954c6bb675ef2555b879b-1-1.jpg"
+                src="/assets/uploads/Untitled200_20260317035152-1.png"
                 alt="RJ Vanshika Parmar"
-                className="relative w-72 h-72 object-cover object-top rounded-full"
+                className="relative w-72 h-72 object-cover rounded-full"
                 style={{
                   boxShadow:
                     "0 0 40px oklch(0.45 0.18 15 / 0.35), 0 20px 60px rgba(0,0,0,0.6)",

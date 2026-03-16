@@ -43,12 +43,12 @@ export default function HeroSection() {
           <div className="relative">
             {/* Outer glow ring */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold via-crimson to-gold opacity-80 blur-sm scale-105" />
-            {/* Gold/crimson border ring */}
-            <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-gradient-to-br from-gold via-crimson to-gold shadow-[0_0_30px_rgba(220,20,60,0.5)]">
+            {/* Portrait container */}
+            <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full shadow-[0_0_30px_rgba(220,20,60,0.5)]">
               <img
-                src="/assets/Screenshot_2026-03-12-18-38-24-30_e5d3893ac03954c6bb675ef2555b879b-1.jpg"
+                src="/assets/uploads/Untitled200_20260317035152-1.png"
                 alt="RJ Vanshika Parmar"
-                className="w-full h-full rounded-full object-cover object-top"
+                className="w-full h-full rounded-full object-cover"
               />
             </div>
           </div>
