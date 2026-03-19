@@ -54,7 +54,12 @@ export default function EnglishBooksPage({
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-center gap-2 text-muted-foreground hover:text-gold transition-colors duration-300 mb-12 group bg-transparent border-none cursor-pointer p-0 font-body text-sm tracking-widest uppercase"
+          whileTap={{
+            scale: 0.95,
+            boxShadow:
+              "0 0 30px oklch(0.55 0.2 15 / 1), 0 0 60px oklch(0.55 0.2 15 / 0.6)",
+          }}
+          className="flex items-center gap-2 btn-crimson border transition-all duration-300 mb-12 group cursor-pointer px-5 py-2 rounded-full font-body text-sm tracking-widest uppercase"
         >
           <ArrowLeft
             size={16}
@@ -71,14 +76,15 @@ export default function EnglishBooksPage({
           className="text-center mb-16"
         >
           <p className="font-body text-xs tracking-[0.3em] uppercase text-gold mb-4">
-            Dark Romance Novels
+            Stories &amp; Novels
           </p>
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-4">
             English
             <span className="text-crimson-light italic block">Books</span>
           </h1>
           <p className="font-body text-muted-foreground">
-            Vanshika Parmar's English dark romance novels
+            Vanshika Parmar's English novels — stories that haunt you long after
+            the last page
           </p>
         </motion.div>
 
@@ -120,12 +126,11 @@ export default function EnglishBooksPage({
                         {book.title}
                       </p>
                       <p className="font-body text-xs text-crimson-light mt-2 text-center uppercase tracking-widest">
-                        Dark Romance
+                        Novel
                       </p>
                       <div className="w-8 h-px bg-gold mt-4" />
                     </div>
                   )}
-                  {/* Coming soon badge */}
                   {book.comingSoon && (
                     <div className="absolute top-3 right-3">
                       <span className="bg-gold text-background text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-sm shadow-lg">

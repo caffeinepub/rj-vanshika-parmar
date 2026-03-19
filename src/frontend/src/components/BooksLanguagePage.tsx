@@ -131,7 +131,7 @@ export default function BooksLanguagePage({
                 English Books
               </h2>
               <p className="font-body text-lg text-crimson-light mb-2">
-                Dark Romance Novels
+                Stories &amp; Novels
               </p>
               <p className="font-body text-muted-foreground text-sm leading-relaxed mb-8">
                 Stories that haunt you long after the last page

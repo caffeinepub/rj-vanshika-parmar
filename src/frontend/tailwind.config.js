@@ -34,6 +34,11 @@ export default {
           DEFAULT: "oklch(0.72 0.12 75)",
           muted: "oklch(0.62 0.08 75)",
         },
+        neonpink: {
+          DEFAULT: "oklch(0.62 0.28 350)",
+          light: "oklch(0.72 0.26 350)",
+          dark: "oklch(0.50 0.25 350)",
+        },
         primary: {
           DEFAULT: "oklch(var(--primary) / <alpha-value>)",
           foreground: "oklch(var(--primary-foreground))",
@@ -90,6 +95,8 @@ export default {
         crimson: "0 0 30px oklch(0.48 0.18 15 / 0.3)",
         gold: "0 0 20px oklch(0.72 0.12 75 / 0.2)",
         glow: "0 0 60px oklch(0.48 0.18 15 / 0.15)",
+        "neonpink": "0 0 20px oklch(0.62 0.28 350 / 0.8), 0 0 40px oklch(0.62 0.28 350 / 0.4)",
+        "neonpink-sm": "0 0 10px oklch(0.62 0.28 350 / 0.6), 0 0 20px oklch(0.62 0.28 350 / 0.3)",
       },
       keyframes: {
         "accordion-down": {

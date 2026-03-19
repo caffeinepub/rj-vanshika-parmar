@@ -1,9 +1,10 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { Headphones } from "lucide-react";
 import { motion } from "motion/react";
 import { useGetCompanyInfo } from "../hooks/useQueries";
 
 const FALLBACK_DESCRIPTION =
-  "Night Rose Publications is the creative home of dark romance fiction. Founded by Vanshika Parmar, the company is dedicated to publishing stories that dare to explore the depths of human emotion — tales of passion, danger, heartbreak, and redemption. We believe every great love story hides a shadow.";
+  "Night Rose Publications is the creative home of interactive novel fiction. Founded by Vanshika Parmar, the company is dedicated to publishing stories that dare to explore the depths of human emotion — tales of passion, danger, heartbreak, and redemption. We believe every great love story hides a shadow.";
 
 export default function NightRoseSection() {
   const { data: companyInfo, isLoading } = useGetCompanyInfo();
@@ -91,18 +92,26 @@ export default function NightRoseSection() {
 
           {/* Core values */}
           <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto">
-            {[
-              { symbol: "🌹", label: "Dark Romance" },
-              { symbol: "📖", label: "Authentic Stories" },
-              { symbol: "✨", label: "Emotional Depth" },
-            ].map((item) => (
-              <div key={item.label} className="text-center">
-                <div className="text-3xl mb-2">{item.symbol}</div>
-                <div className="font-body text-xs tracking-widest uppercase text-gold/70">
-                  {item.label}
-                </div>
+            <div className="text-center">
+              <div className="flex justify-center mb-2">
+                <Headphones size={28} className="text-crimson-light" />
               </div>
-            ))}
+              <div className="font-body text-xs tracking-widest uppercase text-gold/70">
+                Audio Books
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl mb-2">📖</div>
+              <div className="font-body text-xs tracking-widest uppercase text-gold/70">
+                Authentic Stories
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl mb-2">✨</div>
+              <div className="font-body text-xs tracking-widest uppercase text-gold/70">
+                Emotional Depth
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

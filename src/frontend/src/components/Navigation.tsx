@@ -19,6 +19,37 @@ interface NavigationProps {
   onNavigateTo: (page: string) => void;
 }
 
+function NavPill({
+  label,
+  isActive,
+  onClick,
+  ocid,
+}: {
+  label: string;
+  isActive?: boolean;
+  onClick: () => void;
+  ocid: string;
+}) {
+  return (
+    <motion.button
+      type="button"
+      data-ocid={ocid}
+      onClick={onClick}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{
+        scale: 0.95,
+        boxShadow:
+          "0 0 30px oklch(0.55 0.2 15 / 1), 0 0 60px oklch(0.55 0.2 15 / 0.6)",
+      }}
+      className={`relative font-body text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-full border transition-all duration-300 cursor-pointer ${
+        isActive ? "btn-crimson-active font-semibold" : "btn-crimson"
+      }`}
+    >
+      {label}
+    </motion.button>
+  );
+}
+
 export default function Navigation({
   isLight,
   onToggleTheme,
@@ -45,6 +76,11 @@ export default function Navigation({
     setMobileOpen(false);
   };
 
+  const isBooksActive =
+    page === "booksLanguage" ||
+    page === "hindiBooks" ||
+    page === "englishBooks";
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -67,51 +103,40 @@ export default function Navigation({
         </button>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-6">
+        <ul className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
             <li key={link.href}>
-              {page === "home" ? (
-                <a
-                  href={link.href}
-                  data-ocid={link.ocid}
-                  className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-300 relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-crimson group-hover:w-full transition-all duration-300" />
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  data-ocid={link.ocid}
-                  onClick={() => handleNavClick(link.href)}
-                  className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-300 relative group bg-transparent border-none cursor-pointer p-0"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-crimson group-hover:w-full transition-all duration-300" />
-                </button>
-              )}
+              <NavPill
+                label={link.label}
+                ocid={link.ocid}
+                isActive={false}
+                onClick={() => handleNavClick(link.href)}
+              />
             </li>
           ))}
-          {/* Books language page link */}
+          {/* Books page link */}
           <li>
-            <button
-              type="button"
-              data-ocid="nav.books.link"
+            <NavPill
+              label="Books"
+              ocid="nav.books.link"
+              isActive={isBooksActive}
               onClick={() => {
                 onNavigateTo("booksLanguage");
                 setMobileOpen(false);
               }}
-              className={`font-body text-xs tracking-widest uppercase transition-colors duration-300 relative group bg-transparent border-none cursor-pointer p-0 ${
-                page === "booksLanguage" ||
-                page === "hindiBooks" ||
-                page === "englishBooks"
-                  ? "text-gold"
-                  : "text-muted-foreground hover:text-gold"
-              }`}
-            >
-              Books
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-crimson group-hover:w-full transition-all duration-300" />
-            </button>
+            />
+          </li>
+          {/* Audio Books page link */}
+          <li>
+            <NavPill
+              label="Audio Books"
+              ocid="nav.audiobooks.link"
+              isActive={page === "audioBooks"}
+              onClick={() => {
+                onNavigateTo("audioBooks");
+                setMobileOpen(false);
+              }}
+            />
           </li>
         </ul>
 
@@ -122,12 +147,15 @@ export default function Navigation({
             type="button"
             onClick={onToggleTheme}
             data-ocid="nav.theme.toggle"
-            whileTap={{ scale: 0.9 }}
+            whileTap={{
+              scale: 0.9,
+              boxShadow: "0 0 24px oklch(0.55 0.2 15 / 1)",
+            }}
             whileHover={{ scale: 1.1 }}
             aria-label={
               isLight ? "Switch to dark mode" : "Switch to light mode"
             }
-            className="relative w-9 h-9 flex items-center justify-center rounded-full border border-crimson/30 text-muted-foreground hover:text-gold hover:border-gold/50 transition-all duration-300 bg-background/20 backdrop-blur-sm"
+            className="relative w-9 h-9 flex items-center justify-center rounded-full border transition-all duration-300 btn-crimson"
           >
             <AnimatePresence mode="wait" initial={false}>
               {isLight ? (
@@ -159,7 +187,7 @@ export default function Navigation({
           {/* Mobile menu toggle */}
           <button
             type="button"
-            className="md:hidden text-foreground hover:text-gold transition-colors"
+            className="md:hidden text-foreground hover:text-crimson-light transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -177,7 +205,7 @@ export default function Navigation({
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-background/98 border-b border-crimson/20 overflow-hidden"
           >
-            <ul className="flex flex-col px-6 py-4 gap-4">
+            <ul className="flex flex-col px-6 py-4 gap-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   {page === "home" ? (
@@ -185,7 +213,7 @@ export default function Navigation({
                       href={link.href}
                       data-ocid={link.ocid}
                       onClick={() => setMobileOpen(false)}
-                      className="block font-body text-sm tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors py-2"
+                      className="block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border btn-crimson transition-all"
                     >
                       {link.label}
                     </a>
@@ -194,7 +222,7 @@ export default function Navigation({
                       type="button"
                       data-ocid={link.ocid}
                       onClick={() => handleNavClick(link.href)}
-                      className="block font-body text-sm tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors py-2 bg-transparent border-none cursor-pointer w-full text-left"
+                      className="block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border btn-crimson cursor-pointer w-full text-left transition-all"
                     >
                       {link.label}
                     </button>
@@ -209,9 +237,26 @@ export default function Navigation({
                     onNavigateTo("booksLanguage");
                     setMobileOpen(false);
                   }}
-                  className="block font-body text-sm tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors py-2 bg-transparent border-none cursor-pointer w-full text-left"
+                  className={`block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border cursor-pointer w-full text-left transition-all ${
+                    isBooksActive ? "btn-crimson-active" : "btn-crimson"
+                  }`}
                 >
                   Books
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  data-ocid="nav.audiobooks.link"
+                  onClick={() => {
+                    onNavigateTo("audioBooks");
+                    setMobileOpen(false);
+                  }}
+                  className={`block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border cursor-pointer w-full text-left transition-all ${
+                    page === "audioBooks" ? "btn-crimson-active" : "btn-crimson"
+                  }`}
+                >
+                  Audio Books
                 </button>
               </li>
             </ul>

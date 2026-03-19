@@ -40,6 +40,9 @@
     --sidebar-accent-foreground: 0.85 0.018 70;
     --sidebar-border: 0.22 0.04 15;
     --sidebar-ring: 0.48 0.18 15;
+    /* Neon pink token — kept for decorative accents only */
+    --neonpink: oklch(0.62 0.28 350);
+    --neonpink-glow: oklch(0.62 0.28 350 / 0.8);
   }
 
   /* Light mode — soft ivory & warm rose palette */
@@ -76,6 +79,8 @@
     --sidebar-accent-foreground: 0.25 0.025 20;
     --sidebar-border: 0.82 0.035 40;
     --sidebar-ring: 0.52 0.2 15;
+    --neonpink: oklch(0.58 0.28 350);
+    --neonpink-glow: oklch(0.58 0.28 350 / 0.8);
   }
 
   * {
@@ -139,6 +144,72 @@
 
   html.light .text-crimson-light {
     color: oklch(0.52 0.22 15);
+  }
+
+  /* Neon pink utilities — decorative accents only, not for buttons */
+  .bg-neonpink {
+    background-color: var(--neonpink);
+  }
+
+  .border-neonpink {
+    border-color: var(--neonpink);
+  }
+
+  .text-neonpink {
+    color: var(--neonpink);
+  }
+
+  .shadow-neonpink {
+    box-shadow: 0 0 20px var(--neonpink-glow), 0 0 40px
+      oklch(0.62 0.28 350 / 0.3);
+  }
+
+  .shadow-neonpink-sm {
+    box-shadow: 0 0 10px oklch(0.62 0.28 350 / 0.6), 0 0 20px
+      oklch(0.62 0.28 350 / 0.25);
+  }
+
+  /* Legacy — kept so existing decorative usages don't break */
+  .btn-neonpink {
+    background-color: oklch(0.55 0.2 15);
+    border-color: oklch(0.55 0.2 15);
+    color: white;
+    box-shadow: 0 0 16px oklch(0.55 0.2 15 / 0.5), 0 0 32px
+      oklch(0.55 0.2 15 / 0.25);
+  }
+
+  .btn-neonpink:hover {
+    background-color: oklch(0.6 0.22 15);
+    box-shadow: 0 0 24px oklch(0.55 0.2 15 / 0.8), 0 0 48px
+      oklch(0.55 0.2 15 / 0.45);
+  }
+
+  /* ─── Crimson button utility ─────────────────────────────── */
+  .btn-crimson {
+    background-color: oklch(0.55 0.2 15);
+    border-color: oklch(0.55 0.2 15);
+    color: white;
+    box-shadow: 0 0 10px oklch(0.55 0.2 15 / 0.4);
+  }
+
+  .btn-crimson:hover {
+    background-color: oklch(0.6 0.22 15);
+    box-shadow: 0 0 20px oklch(0.55 0.2 15 / 0.7), 0 0 40px
+      oklch(0.55 0.2 15 / 0.4);
+  }
+
+  .btn-crimson:active {
+    box-shadow: 0 0 30px oklch(0.55 0.2 15 / 1), 0 0 60px
+      oklch(0.55 0.2 15 / 0.6);
+  }
+
+  /* Active/highlighted crimson (for current nav item) */
+  .btn-crimson-active {
+    background-color: oklch(0.6 0.22 15);
+    border-color: oklch(0.6 0.22 15);
+    color: white;
+    box-shadow: 0 0 20px oklch(0.55 0.2 15 / 0.8), 0 0 40px
+      oklch(0.55 0.2 15 / 0.5);
   }
 
   .rose-divider {

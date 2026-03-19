@@ -58,7 +58,7 @@ export default function BooksSection() {
 
   return (
     <section id="books" className="section-padding relative overflow-hidden">
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-crimson/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-neonpink/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -119,17 +119,17 @@ export default function BooksSection() {
                   {...(wrapperProps as object)}
                 >
                   {/* Book cover */}
-                  <div className="relative overflow-hidden mb-6 shadow-[0_20px_60px_rgba(0,0,0,0.5)] group-hover:shadow-crimson transition-shadow duration-500">
+                  <div className="relative overflow-hidden mb-6 shadow-[0_20px_60px_rgba(0,0,0,0.5)] group-hover:shadow-neonpink transition-shadow duration-500">
                     <img
                       src={COVERS[i]}
                       alt={book.title}
                       className="w-full aspect-[2/3] object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-crimson/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neonpink/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     {hasLink && (
                       <div className="absolute inset-0 flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <span className="bg-crimson text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-sm shadow-lg">
+                        <span className="bg-neonpink text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-sm shadow-neonpink-sm">
                           Read Now
                         </span>
                       </div>
@@ -138,8 +138,8 @@ export default function BooksSection() {
 
                   {/* Book info */}
                   <div className="relative">
-                    <div className="w-8 h-px bg-crimson mb-4" />
-                    <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-crimson-light transition-colors duration-300">
+                    <div className="w-8 h-px bg-neonpink mb-4" />
+                    <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-neonpink transition-colors duration-300">
                       {book.title}
                     </h3>
                     <p className="font-body text-sm leading-relaxed text-muted-foreground line-clamp-3">

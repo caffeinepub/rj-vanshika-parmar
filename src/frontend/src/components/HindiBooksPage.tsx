@@ -22,7 +22,7 @@ const hindiBooks = [
     title: "क्रिमसन व्रत",
     hindiTitle: "Crimson Vows",
     cover: null as string | null,
-    description: "उसने प्यार न करने की कसम खाई थी। उसने वो कसम तुड़वाने की ठान ली थी।",
+    description: "उसने प्यार न करने की कसम खाई थी। उसने वो कसम तुड़वाने की ठान ली थी।",
     link: null as string | null,
     comingSoon: true,
   },
@@ -53,7 +53,12 @@ export default function HindiBooksPage({ onNavigateTo }: HindiBooksPageProps) {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-center gap-2 text-muted-foreground hover:text-gold transition-colors duration-300 mb-12 group bg-transparent border-none cursor-pointer p-0 font-body text-sm tracking-widest uppercase"
+          whileTap={{
+            scale: 0.95,
+            boxShadow:
+              "0 0 30px oklch(0.55 0.2 15 / 1), 0 0 60px oklch(0.55 0.2 15 / 0.6)",
+          }}
+          className="flex items-center gap-2 btn-crimson border transition-all duration-300 mb-12 group cursor-pointer px-5 py-2 rounded-full font-body text-sm tracking-widest uppercase"
         >
           <ArrowLeft
             size={16}
@@ -115,7 +120,6 @@ export default function HindiBooksPage({ onNavigateTo }: HindiBooksPageProps) {
                     <div className="w-8 h-px bg-crimson mt-4" />
                   </div>
                 )}
-                {/* Coming soon overlay */}
                 {book.comingSoon && (
                   <div className="absolute top-3 right-3">
                     <span className="bg-gold text-background text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-sm shadow-lg">

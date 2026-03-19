@@ -43,8 +43,8 @@ export default function HeroSection() {
       {isLight && <div className="absolute inset-0 bg-white/25" />}
 
       {/* Decorative corner petals */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-radial from-crimson/10 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-radial from-crimson/8 to-transparent rounded-full blur-3xl" />
+      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-radial from-neonpink/10 to-transparent rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-radial from-neonpink/8 to-transparent rounded-full blur-3xl" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
@@ -53,7 +53,7 @@ export default function HeroSection() {
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="w-24 h-px bg-crimson mx-auto mb-8"
+          className="w-24 h-px bg-neonpink mx-auto mb-8"
         />
 
         {/* Portrait */}
@@ -84,7 +84,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="font-body text-xs tracking-[0.3em] uppercase text-gold mb-6"
         >
-          Voice Artist · Author
+          Voice Artist · Author · Ventriloquist
         </motion.p>
 
         {/* Main heading */}
@@ -117,7 +117,7 @@ export default function HeroSection() {
           whileTap={{ scale: 0.98 }}
           onClick={handleExplore}
           data-ocid="hero.primary_button"
-          className="inline-flex items-center gap-3 px-10 py-4 bg-crimson text-foreground font-body text-sm tracking-widest uppercase hover:bg-crimson-light transition-colors duration-300 shadow-crimson group"
+          className="inline-flex items-center gap-3 px-10 py-4 bg-neonpink text-white font-body text-sm tracking-widest uppercase shadow-neonpink hover:shadow-[0_0_32px_oklch(0.62_0.28_350/0.95),_0_0_60px_oklch(0.62_0.28_350/0.5)] transition-all duration-300 group"
         >
           Explore Her World
           <span className="inline-block transition-transform group-hover:translate-x-1">
@@ -130,7 +130,7 @@ export default function HeroSection() {
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="w-24 h-px bg-crimson mx-auto mt-16"
+          className="w-24 h-px bg-neonpink mx-auto mt-16"
         />
       </div>
 
@@ -151,7 +151,7 @@ export default function HeroSection() {
             duration: 1.5,
             ease: "easeInOut",
           }}
-          className="w-px h-8 bg-gradient-to-b from-crimson to-transparent"
+          className="w-px h-8 bg-gradient-to-b from-neonpink to-transparent"
         />
       </motion.div>
     </section>
