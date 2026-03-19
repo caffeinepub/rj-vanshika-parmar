@@ -1,23 +1,46 @@
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
+  const [isLight, setIsLight] = useState(
+    document.documentElement.classList.contains("light"),
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsLight(document.documentElement.classList.contains("light"));
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
   const handleExplore = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
+      {/* Background image — switches based on theme */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500"
         style={{
-          backgroundImage: "url('/assets/generated/hero-bg.dim_1400x800.jpg')",
+          backgroundImage: `url('${
+            isLight
+              ? "/assets/generated/hero-bg-light.dim_1400x800.jpg"
+              : "/assets/generated/hero-bg.dim_1400x800.jpg"
+          }')`,
         }}
       />
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background/90" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
+
+      {/* Extra overlay in light mode for text contrast */}
+      {isLight && <div className="absolute inset-0 bg-white/25" />}
 
       {/* Decorative corner petals */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-radial from-crimson/10 to-transparent rounded-full blur-3xl" />
@@ -61,7 +84,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="font-body text-xs tracking-[0.3em] uppercase text-gold mb-6"
         >
-          Radio Jockey · Dark Romance Author
+          Voice Artist · Author
         </motion.p>
 
         {/* Main heading */}

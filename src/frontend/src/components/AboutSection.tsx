@@ -34,29 +34,28 @@ export default function AboutSection() {
             </h2>
 
             <p className="font-body text-base leading-relaxed text-muted-foreground mb-6">
-              Vanshika Parmar is more than a voice on the airwaves — she is a
-              storyteller of the shadows. As a Radio Jockey, she captivates
-              audiences with her magnetic presence and compelling narratives.
+              Vanshika Parmar is a voice artist and writer who brings stories to
+              life in the most intimate way — through words that are felt as
+              deeply as they are heard.
             </p>
 
             <p className="font-body text-base leading-relaxed text-muted-foreground mb-6">
-              As a dark romance author, she crafts worlds where love is fierce,
-              complicated, and beautifully broken. Her stories explore intense
-              emotions, deep desires, and the secrets that bind people together
-              in unexpected ways.
+              As an author, she writes across many forms — novels, short
+              stories, and poetry — weaving together emotion, drama, and the
+              quiet truths of the human heart. Every piece she creates is a
+              journey into a world you won't want to leave.
             </p>
 
             <p className="font-body text-base leading-relaxed text-muted-foreground">
-              Through her work, Vanshika combines storytelling with strong
-              atmosphere and dramatic moments that are common in dark romance
-              fiction — characters who face inner struggles, deep desires, and
-              unexpected turns in their relationships.
+              Whether it's a verse that captures a fleeting feeling or a novel
+              that keeps you awake through the night, Vanshika writes with
+              honesty, depth, and a voice that is entirely her own.
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-border">
               {[
-                { value: "50+", label: "Radio Shows" },
+                { value: "100+", label: "Stories Written" },
                 { value: "4+", label: "Novels" },
                 { value: "10K+", label: "Readers" },
               ].map((stat) => (
@@ -99,7 +98,7 @@ export default function AboutSection() {
               {/* Portrait image */}
               <img
                 src="/assets/uploads/Untitled200_20260317035152-1.png"
-                alt="RJ Vanshika Parmar"
+                alt="Vanshika Parmar"
                 className="relative w-72 h-72 object-cover rounded-full"
                 style={{
                   boxShadow:
@@ -110,7 +109,7 @@ export default function AboutSection() {
               {/* Name badge */}
               <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-card border border-gold/30 px-5 py-2 text-center whitespace-nowrap">
                 <p className="font-display text-sm text-gold tracking-widest uppercase">
-                  RJ Vanshika Parmar
+                  Vanshika Parmar
                 </p>
               </div>
             </div>

@@ -1,33 +1,33 @@
-import { Eye, Flame, Heart, Sparkles } from "lucide-react";
+import { BookOpen, Feather, Headphones, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 
 const themes = [
   {
-    icon: Flame,
-    title: "Love in Darkness",
+    icon: BookOpen,
+    title: "Novels",
     description:
-      "Passion that burns in the shadows, where love defies all reason and refuses to be extinguished.",
+      "From gripping fiction to sweeping narratives, every novel is a new world waiting to be discovered — vivid, layered, and unforgettable.",
     color: "text-crimson-light",
   },
   {
-    icon: Eye,
-    title: "Hidden Secrets",
+    icon: Feather,
+    title: "Poetry",
     description:
-      "Every character carries a past, and every secret changes everything — unraveling lives in beautiful ways.",
+      "Words that breathe and ache — poetry that captures what the heart cannot say out loud, one line at a time.",
     color: "text-gold",
   },
   {
-    icon: Heart,
-    title: "Emotional Conflicts",
+    icon: Headphones,
+    title: "Audio Books",
     description:
-      "The push and pull of desire, duty, and the heart's true longing — a battlefield of the soul.",
+      "Stories brought to life through voice — immersive audio experiences that let you feel every word, every emotion.",
     color: "text-crimson-light",
   },
   {
     icon: Sparkles,
-    title: "Mysterious Characters",
+    title: "Emotional Drama",
     description:
-      "Complicated souls drawn together by fate and forbidden feelings, forever changed by their encounters.",
+      "Layered characters, raw emotions, and unexpected turns that make every page impossible to put down.",
     color: "text-gold",
   },
 ];
@@ -38,7 +38,6 @@ export default function WritingThemesSection() {
       id="writing"
       className="section-padding relative bg-card overflow-hidden"
     >
-      {/* Atmospheric background */}
       <div className="absolute inset-0 bg-gradient-to-br from-crimson/5 via-transparent to-gold/5 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-crimson/40 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-crimson/40 to-transparent" />
@@ -73,7 +72,6 @@ export default function WritingThemesSection() {
               whileHover={{ y: -6 }}
               className="group relative bg-background border border-border hover:border-crimson/40 p-8 transition-all duration-300"
             >
-              {/* Top accent line */}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-crimson/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <theme.icon
@@ -89,7 +87,6 @@ export default function WritingThemesSection() {
                 {theme.description}
               </p>
 
-              {/* Corner decoration */}
               <div className="absolute bottom-3 right-3 w-6 h-6 border-b border-r border-crimson/20 group-hover:border-crimson/50 transition-colors duration-300" />
             </motion.div>
           ))}

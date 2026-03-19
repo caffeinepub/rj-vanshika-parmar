@@ -112,6 +112,11 @@
     color: oklch(var(--accent));
   }
 
+  /* Deeper warm gold in light mode for better legibility */
+  html.light .text-gold {
+    color: oklch(0.5 0.14 55);
+  }
+
   .text-crimson {
     color: oklch(0.55 0.2 15);
   }

@@ -1,13 +1,13 @@
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+import type { PageType } from "../App";
 
 const navLinks = [
   { label: "About", href: "#about", ocid: "nav.about.link" },
   { label: "Writing", href: "#writing", ocid: "nav.writing.link" },
-  { label: "Books", href: "#books", ocid: "nav.books.link" },
   { label: "Night Rose", href: "#nightrose", ocid: "nav.nightrose.link" },
-  { label: "Advertise", href: "#advertise", ocid: "nav.advertise.link" },
+  { label: "Partner", href: "#advertise", ocid: "nav.advertise.link" },
   { label: "Social", href: "#social", ocid: "nav.social.link" },
   { label: "Contact", href: "#contact", ocid: "nav.contact.link" },
 ];
@@ -15,11 +15,15 @@ const navLinks = [
 interface NavigationProps {
   isLight: boolean;
   onToggleTheme: () => void;
+  page: PageType;
+  onNavigateTo: (page: string) => void;
 }
 
 export default function Navigation({
   isLight,
   onToggleTheme,
+  page,
+  onNavigateTo,
 }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,6 +33,17 @@ export default function Navigation({
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavClick = (href: string) => {
+    if (page !== "home") {
+      onNavigateTo("home");
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+    setMobileOpen(false);
+  };
 
   return (
     <motion.header
@@ -43,27 +58,61 @@ export default function Navigation({
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#hero"
-          className="font-display text-xl font-semibold tracking-wide text-foreground hover:text-gold transition-colors duration-300"
+        <button
+          type="button"
+          onClick={() => onNavigateTo("home")}
+          className="font-display text-xl font-semibold tracking-wide text-foreground hover:text-gold transition-colors duration-300 bg-transparent border-none cursor-pointer p-0"
         >
           <span className="text-crimson-light">RJ</span> Vanshika Parmar
-        </a>
+        </button>
 
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                data-ocid={link.ocid}
-                className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-300 relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-crimson group-hover:w-full transition-all duration-300" />
-              </a>
+              {page === "home" ? (
+                <a
+                  href={link.href}
+                  data-ocid={link.ocid}
+                  className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-300 relative group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-crimson group-hover:w-full transition-all duration-300" />
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  data-ocid={link.ocid}
+                  onClick={() => handleNavClick(link.href)}
+                  className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-300 relative group bg-transparent border-none cursor-pointer p-0"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-crimson group-hover:w-full transition-all duration-300" />
+                </button>
+              )}
             </li>
           ))}
+          {/* Books language page link */}
+          <li>
+            <button
+              type="button"
+              data-ocid="nav.books.link"
+              onClick={() => {
+                onNavigateTo("booksLanguage");
+                setMobileOpen(false);
+              }}
+              className={`font-body text-xs tracking-widest uppercase transition-colors duration-300 relative group bg-transparent border-none cursor-pointer p-0 ${
+                page === "booksLanguage" ||
+                page === "hindiBooks" ||
+                page === "englishBooks"
+                  ? "text-gold"
+                  : "text-muted-foreground hover:text-gold"
+              }`}
+            >
+              Books
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-crimson group-hover:w-full transition-all duration-300" />
+            </button>
+          </li>
         </ul>
 
         {/* Right controls */}
@@ -131,16 +180,40 @@ export default function Navigation({
             <ul className="flex flex-col px-6 py-4 gap-4">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    data-ocid={link.ocid}
-                    onClick={() => setMobileOpen(false)}
-                    className="block font-body text-sm tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors py-2"
-                  >
-                    {link.label}
-                  </a>
+                  {page === "home" ? (
+                    <a
+                      href={link.href}
+                      data-ocid={link.ocid}
+                      onClick={() => setMobileOpen(false)}
+                      className="block font-body text-sm tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors py-2"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      data-ocid={link.ocid}
+                      onClick={() => handleNavClick(link.href)}
+                      className="block font-body text-sm tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors py-2 bg-transparent border-none cursor-pointer w-full text-left"
+                    >
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
+              <li>
+                <button
+                  type="button"
+                  data-ocid="nav.books.link"
+                  onClick={() => {
+                    onNavigateTo("booksLanguage");
+                    setMobileOpen(false);
+                  }}
+                  className="block font-body text-sm tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors py-2 bg-transparent border-none cursor-pointer w-full text-left"
+                >
+                  Books
+                </button>
+              </li>
             </ul>
           </motion.div>
         )}
