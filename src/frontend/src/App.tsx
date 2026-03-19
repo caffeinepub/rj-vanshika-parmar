@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import AboutSection from "./components/AboutSection";
 import AdvertiseSection from "./components/AdvertiseSection";
 import BooksSection from "./components/BooksSection";
@@ -10,9 +11,25 @@ import SocialMediaPage from "./components/SocialMediaPage";
 import WritingThemesSection from "./components/WritingThemesSection";
 
 export default function App() {
+  const [isLight, setIsLight] = useState(() => {
+    return localStorage.getItem("theme") === "light";
+  });
+
+  useEffect(() => {
+    if (isLight) {
+      document.documentElement.classList.add("light");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.remove("light");
+      localStorage.setItem("theme", "dark");
+    }
+  }, [isLight]);
+
+  const toggleTheme = () => setIsLight((prev) => !prev);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
+      <Navigation isLight={isLight} onToggleTheme={toggleTheme} />
       <main>
         <HeroSection />
         <AboutSection />

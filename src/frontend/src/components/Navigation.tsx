@@ -1,4 +1,4 @@
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -12,7 +12,15 @@ const navLinks = [
   { label: "Contact", href: "#contact", ocid: "nav.contact.link" },
 ];
 
-export default function Navigation() {
+interface NavigationProps {
+  isLight: boolean;
+  onToggleTheme: () => void;
+}
+
+export default function Navigation({
+  isLight,
+  onToggleTheme,
+}: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -58,15 +66,57 @@ export default function Navigation() {
           ))}
         </ul>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          className="md:hidden text-foreground hover:text-gold transition-colors"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Right controls */}
+        <div className="flex items-center gap-2">
+          {/* Theme toggle */}
+          <motion.button
+            type="button"
+            onClick={onToggleTheme}
+            data-ocid="nav.theme.toggle"
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.1 }}
+            aria-label={
+              isLight ? "Switch to dark mode" : "Switch to light mode"
+            }
+            className="relative w-9 h-9 flex items-center justify-center rounded-full border border-crimson/30 text-muted-foreground hover:text-gold hover:border-gold/50 transition-all duration-300 bg-background/20 backdrop-blur-sm"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {isLight ? (
+                <motion.span
+                  key="moon"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute"
+                >
+                  <Moon size={16} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="sun"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute"
+                >
+                  <Sun size={16} />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </motion.button>
+
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            className="md:hidden text-foreground hover:text-gold transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
