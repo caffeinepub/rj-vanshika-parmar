@@ -5,9 +5,9 @@ import { useGetAllBooks } from "../hooks/useQueries";
 const FALLBACK_BOOKS = [
   {
     id: BigInt(1),
-    title: "Thorns of Desire",
+    title: "Mafia Crave",
     description:
-      "A forbidden love between two souls destined to destroy each other — and yet, unable to stay apart. When darkness becomes the only refuge, desire becomes the only truth.",
+      "A dangerous meeting between a ruthless Russian mafia and a strong Indian IAS officer turns into an unexpected love. He begins to crave her… and she falls for the man she should hate.",
   },
   {
     id: BigInt(2),
@@ -30,7 +30,7 @@ const FALLBACK_BOOKS = [
 ];
 
 const COVERS = [
-  "/assets/generated/book-cover-1.dim_300x450.jpg",
+  "/assets/uploads/Picsart_26-03-20_03-13-42-588-1.jpg",
   "/assets/generated/book-cover-2.dim_300x450.jpg",
   "/assets/generated/book-cover-3.dim_300x450.jpg",
   "/assets/generated/book-cover-4.dim_300x450.jpg",
