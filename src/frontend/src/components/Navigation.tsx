@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import type { PageType } from "../App";
 
 const navLinks = [
-  { label: "About", href: "#about", ocid: "nav.about.link" },
-  { label: "Writing", href: "#writing", ocid: "nav.writing.link" },
-  { label: "Night Rose", href: "#nightrose", ocid: "nav.nightrose.link" },
-  { label: "Partner", href: "#advertise", ocid: "nav.advertise.link" },
-  { label: "Social", href: "#social", ocid: "nav.social.link" },
-  { label: "Contact", href: "#contact", ocid: "nav.contact.link" },
+  { label: "About", page: "about", ocid: "nav.about.link" },
+  { label: "Writing", page: "writing", ocid: "nav.writing.link" },
+  { label: "Night Rose", page: "nightrose", ocid: "nav.nightrose.link" },
+  { label: "Partner", page: "partner", ocid: "nav.advertise.link" },
+  { label: "Social", page: "social", ocid: "nav.social.link" },
+  { label: "Contact", page: "contact", ocid: "nav.contact.link" },
 ];
 
 interface NavigationProps {
@@ -54,35 +54,12 @@ export default function Navigation({
 }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Reset active section when page changes away from home
-  useEffect(() => {
-    if (page !== "home") {
-      setActiveSection(null);
-    }
-  }, [page]);
-
-  const handleNavClick = (href: string) => {
-    setActiveSection(href);
-    if (page !== "home") {
-      onNavigateTo("home");
-      setTimeout(() => {
-        const el = document.querySelector(href);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    } else {
-      const el = document.querySelector(href);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-    setMobileOpen(false);
-  };
 
   const isBooksActive =
     page === "booksLanguage" ||
@@ -104,10 +81,7 @@ export default function Navigation({
         {/* Logo */}
         <button
           type="button"
-          onClick={() => {
-            onNavigateTo("home");
-            setActiveSection(null);
-          }}
+          onClick={() => onNavigateTo("home")}
           className="font-display text-xl font-semibold tracking-wide text-foreground hover:text-gold transition-colors duration-300 bg-transparent border-none cursor-pointer p-0"
         >
           <span className="text-crimson-light">RJ</span> Vanshika Parmar
@@ -116,12 +90,15 @@ export default function Navigation({
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
-            <li key={link.href}>
+            <li key={link.page}>
               <NavPill
                 label={link.label}
                 ocid={link.ocid}
-                isActive={activeSection === link.href}
-                onClick={() => handleNavClick(link.href)}
+                isActive={page === link.page}
+                onClick={() => {
+                  onNavigateTo(link.page);
+                  setMobileOpen(false);
+                }}
               />
             </li>
           ))}
@@ -132,7 +109,6 @@ export default function Navigation({
               ocid="nav.books.link"
               isActive={isBooksActive}
               onClick={() => {
-                setActiveSection(null);
                 onNavigateTo("booksLanguage");
                 setMobileOpen(false);
               }}
@@ -145,7 +121,6 @@ export default function Navigation({
               ocid="nav.audiobooks.link"
               isActive={page === "audioBooks"}
               onClick={() => {
-                setActiveSection(null);
                 onNavigateTo("audioBooks");
                 setMobileOpen(false);
               }}
@@ -217,15 +192,16 @@ export default function Navigation({
           >
             <ul className="flex flex-col px-6 py-4 gap-3">
               {navLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.page}>
                   <button
                     type="button"
                     data-ocid={link.ocid}
-                    onClick={() => handleNavClick(link.href)}
+                    onClick={() => {
+                      onNavigateTo(link.page);
+                      setMobileOpen(false);
+                    }}
                     className={`block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border cursor-pointer w-full text-left transition-all ${
-                      activeSection === link.href
-                        ? "btn-crimson-active"
-                        : "btn-crimson"
+                      page === link.page ? "btn-crimson-active" : "btn-crimson"
                     }`}
                   >
                     {link.label}
@@ -237,7 +213,6 @@ export default function Navigation({
                   type="button"
                   data-ocid="nav.books.link"
                   onClick={() => {
-                    setActiveSection(null);
                     onNavigateTo("booksLanguage");
                     setMobileOpen(false);
                   }}
@@ -253,7 +228,6 @@ export default function Navigation({
                   type="button"
                   data-ocid="nav.audiobooks.link"
                   onClick={() => {
-                    setActiveSection(null);
                     onNavigateTo("audioBooks");
                     setMobileOpen(false);
                   }}

@@ -16,6 +16,12 @@ import WritingThemesSection from "./components/WritingThemesSection";
 
 export type PageType =
   | "home"
+  | "about"
+  | "writing"
+  | "nightrose"
+  | "partner"
+  | "social"
+  | "contact"
   | "booksLanguage"
   | "hindiBooks"
   | "englishBooks"
@@ -38,6 +44,7 @@ export default function App() {
   }, [isLight]);
 
   const toggleTheme = () => setIsLight((prev) => !prev);
+  const navigateTo = (p: string) => setPage(p as PageType);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -45,32 +52,61 @@ export default function App() {
         isLight={isLight}
         onToggleTheme={toggleTheme}
         page={page}
-        onNavigateTo={(p) => setPage(p as PageType)}
+        onNavigateTo={navigateTo}
       />
+
       {page === "home" && (
-        <main>
+        <main className="pt-16">
           <HeroSection />
-          <AboutSection />
-          <WritingThemesSection onNavigateTo={(p) => setPage(p as PageType)} />
           <BooksSection />
+        </main>
+      )}
+
+      {page === "about" && (
+        <main className="pt-20">
+          <AboutSection />
+        </main>
+      )}
+
+      {page === "writing" && (
+        <main className="pt-20">
+          <WritingThemesSection onNavigateTo={navigateTo} />
+        </main>
+      )}
+
+      {page === "nightrose" && (
+        <main className="pt-20">
           <NightRoseSection />
+        </main>
+      )}
+
+      {page === "partner" && (
+        <main className="pt-20">
           <AdvertiseSection />
+        </main>
+      )}
+
+      {page === "social" && (
+        <main className="pt-20">
           <SocialMediaPage />
+        </main>
+      )}
+
+      {page === "contact" && (
+        <main className="pt-20">
           <ContactSection />
         </main>
       )}
+
       {page === "booksLanguage" && (
-        <BooksLanguagePage onNavigateTo={(p) => setPage(p as PageType)} />
+        <BooksLanguagePage onNavigateTo={navigateTo} />
       )}
-      {page === "hindiBooks" && (
-        <HindiBooksPage onNavigateTo={(p) => setPage(p as PageType)} />
-      )}
+      {page === "hindiBooks" && <HindiBooksPage onNavigateTo={navigateTo} />}
       {page === "englishBooks" && (
-        <EnglishBooksPage onNavigateTo={(p) => setPage(p as PageType)} />
+        <EnglishBooksPage onNavigateTo={navigateTo} />
       )}
-      {page === "audioBooks" && (
-        <AudioBooksPage onNavigateTo={(p) => setPage(p as PageType)} />
-      )}
+      {page === "audioBooks" && <AudioBooksPage onNavigateTo={navigateTo} />}
+
       <Footer />
     </div>
   );
