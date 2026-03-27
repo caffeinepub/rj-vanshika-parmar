@@ -36,11 +36,7 @@ function NavPill({
       data-ocid={ocid}
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
-      whileTap={{
-        scale: 0.95,
-        boxShadow:
-          "0 0 30px oklch(0.55 0.2 15 / 1), 0 0 60px oklch(0.55 0.2 15 / 0.6)",
-      }}
+      whileTap={{ scale: 0.95 }}
       className={`relative font-body text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-full border transition-all duration-300 cursor-pointer ${
         isActive ? "btn-crimson-active font-semibold" : "btn-crimson"
       }`}
@@ -58,6 +54,7 @@ export default function Navigation({
 }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -65,13 +62,24 @@ export default function Navigation({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Reset active section when page changes away from home
+  useEffect(() => {
+    if (page !== "home") {
+      setActiveSection(null);
+    }
+  }, [page]);
+
   const handleNavClick = (href: string) => {
+    setActiveSection(href);
     if (page !== "home") {
       onNavigateTo("home");
       setTimeout(() => {
         const el = document.querySelector(href);
         if (el) el.scrollIntoView({ behavior: "smooth" });
       }, 100);
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
     setMobileOpen(false);
   };
@@ -96,7 +104,10 @@ export default function Navigation({
         {/* Logo */}
         <button
           type="button"
-          onClick={() => onNavigateTo("home")}
+          onClick={() => {
+            onNavigateTo("home");
+            setActiveSection(null);
+          }}
           className="font-display text-xl font-semibold tracking-wide text-foreground hover:text-gold transition-colors duration-300 bg-transparent border-none cursor-pointer p-0"
         >
           <span className="text-crimson-light">RJ</span> Vanshika Parmar
@@ -109,7 +120,7 @@ export default function Navigation({
               <NavPill
                 label={link.label}
                 ocid={link.ocid}
-                isActive={false}
+                isActive={activeSection === link.href}
                 onClick={() => handleNavClick(link.href)}
               />
             </li>
@@ -121,6 +132,7 @@ export default function Navigation({
               ocid="nav.books.link"
               isActive={isBooksActive}
               onClick={() => {
+                setActiveSection(null);
                 onNavigateTo("booksLanguage");
                 setMobileOpen(false);
               }}
@@ -133,6 +145,7 @@ export default function Navigation({
               ocid="nav.audiobooks.link"
               isActive={page === "audioBooks"}
               onClick={() => {
+                setActiveSection(null);
                 onNavigateTo("audioBooks");
                 setMobileOpen(false);
               }}
@@ -147,10 +160,7 @@ export default function Navigation({
             type="button"
             onClick={onToggleTheme}
             data-ocid="nav.theme.toggle"
-            whileTap={{
-              scale: 0.9,
-              boxShadow: "0 0 24px oklch(0.55 0.2 15 / 1)",
-            }}
+            whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
             aria-label={
               isLight ? "Switch to dark mode" : "Switch to light mode"
@@ -208,25 +218,18 @@ export default function Navigation({
             <ul className="flex flex-col px-6 py-4 gap-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  {page === "home" ? (
-                    <a
-                      href={link.href}
-                      data-ocid={link.ocid}
-                      onClick={() => setMobileOpen(false)}
-                      className="block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border btn-crimson transition-all"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <button
-                      type="button"
-                      data-ocid={link.ocid}
-                      onClick={() => handleNavClick(link.href)}
-                      className="block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border btn-crimson cursor-pointer w-full text-left transition-all"
-                    >
-                      {link.label}
-                    </button>
-                  )}
+                  <button
+                    type="button"
+                    data-ocid={link.ocid}
+                    onClick={() => handleNavClick(link.href)}
+                    className={`block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border cursor-pointer w-full text-left transition-all ${
+                      activeSection === link.href
+                        ? "btn-crimson-active"
+                        : "btn-crimson"
+                    }`}
+                  >
+                    {link.label}
+                  </button>
                 </li>
               ))}
               <li>
@@ -234,6 +237,7 @@ export default function Navigation({
                   type="button"
                   data-ocid="nav.books.link"
                   onClick={() => {
+                    setActiveSection(null);
                     onNavigateTo("booksLanguage");
                     setMobileOpen(false);
                   }}
@@ -249,6 +253,7 @@ export default function Navigation({
                   type="button"
                   data-ocid="nav.audiobooks.link"
                   onClick={() => {
+                    setActiveSection(null);
                     onNavigateTo("audioBooks");
                     setMobileOpen(false);
                   }}

@@ -29,27 +29,22 @@ export default function NightRoseSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Logo with glow ring */}
+          {/* Logo */}
           <div className="relative inline-flex items-center justify-center mb-10">
-            {/* Radial glow behind logo */}
             <div
               className="absolute inset-0 rounded-full pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(circle, oklch(0.45 0.18 15 / 0.3) 0%, oklch(0.35 0.12 15 / 0.1) 50%, transparent 70%)",
+                  "radial-gradient(circle, oklch(0.75 0.15 85 / 0.25) 0%, transparent 70%)",
                 transform: "scale(1.6)",
               }}
             />
-            {/* Gold border ring */}
-            <div className="absolute inset-0 rounded-full border-2 border-gold/50 scale-110 pointer-events-none" />
-            <div className="absolute inset-0 rounded-full border border-crimson/30 scale-125 pointer-events-none" />
-
             <img
-              src="/assets/generated/night-rose-logo-transparent.dim_400x400.png"
+              src="/assets/uploads/picsart_26-03-27_03-00-00-141-019d30c8-1427-762a-a9dc-98d9b305842d-1.png"
               alt="Night Rose Publications"
-              className="relative w-48 h-48 mx-auto object-contain animate-flicker z-10"
+              className="relative w-48 h-48 mx-auto object-contain z-10"
               style={{
-                filter: "drop-shadow(0 0 20px oklch(0.45 0.18 15 / 0.6))",
+                filter: "drop-shadow(0 0 24px oklch(0.75 0.15 85 / 0.5))",
               }}
             />
           </div>
