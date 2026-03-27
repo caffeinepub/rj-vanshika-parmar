@@ -30,22 +30,11 @@ export default function NightRoseSection() {
           transition={{ duration: 0.6 }}
         >
           {/* Logo */}
-          <div className="relative inline-flex items-center justify-center mb-10">
-            <div
-              className="absolute inset-0 rounded-full pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(circle, oklch(0.75 0.15 85 / 0.25) 0%, transparent 70%)",
-                transform: "scale(1.6)",
-              }}
-            />
+          <div className="inline-flex items-center justify-center mb-10">
             <img
-              src="/assets/uploads/picsart_26-03-27_03-00-00-141-019d30c8-1427-762a-a9dc-98d9b305842d-1.png"
+              src="/assets/uploads/1774642316477-019d30ed-497b-740a-b329-5e79adc37f40-1.png"
               alt="Night Rose Publications"
-              className="relative w-48 h-48 mx-auto object-contain z-10"
-              style={{
-                filter: "drop-shadow(0 0 24px oklch(0.75 0.15 85 / 0.5))",
-              }}
+              className="w-48 h-48 mx-auto object-contain"
             />
           </div>
 

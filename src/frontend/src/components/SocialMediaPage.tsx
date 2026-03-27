@@ -27,7 +27,7 @@ const socialPlatforms = [
     name: "X (Twitter)",
     handle: "@vanshikaparmar",
     icon: SiX,
-    href: "#",
+    href: "https://x.com/vanshikaparmar",
     ocid: "social.twitter.card",
     hoverColor:
       "group-hover:border-white/40 group-hover:shadow-[0_0_24px_rgba(255,255,255,0.12)]",
@@ -40,7 +40,7 @@ const socialPlatforms = [
     name: "Facebook",
     handle: "/rjvanshikaparmar",
     icon: SiFacebook,
-    href: "#",
+    href: "https://www.facebook.com/rjvanshikaparmar",
     ocid: "social.facebook.card",
     hoverColor:
       "group-hover:border-blue-500/60 group-hover:shadow-[0_0_24px_oklch(0.55_0.2_260/0.35)]",
@@ -66,7 +66,7 @@ const socialPlatforms = [
     name: "Goodreads",
     handle: "Vanshika Parmar",
     icon: SiGoodreads,
-    href: "#",
+    href: "https://www.goodreads.com/search?q=vanshika+parmar",
     ocid: "social.goodreads.card",
     hoverColor:
       "group-hover:border-amber-500/60 group-hover:shadow-[0_0_24px_oklch(0.75_0.18_80/0.35)]",
@@ -79,7 +79,7 @@ const socialPlatforms = [
     name: "Spotify",
     handle: "RJ Vanshika",
     icon: SiSpotify,
-    href: "#",
+    href: "https://open.spotify.com/search/rj%20vanshika",
     ocid: "social.spotify.card",
     hoverColor:
       "group-hover:border-green-500/60 group-hover:shadow-[0_0_24px_oklch(0.65_0.2_145/0.35)]",

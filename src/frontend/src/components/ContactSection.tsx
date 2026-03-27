@@ -12,14 +12,14 @@ const socials = [
   {
     icon: SiX,
     label: "Twitter / X",
-    href: "https://x.com",
+    href: "https://x.com/vanshikaparmar",
     ocid: "contact.twitter.button",
     color: "hover:text-foreground",
   },
   {
     icon: SiGoodreads,
     label: "Goodreads",
-    href: "https://goodreads.com",
+    href: "https://www.goodreads.com/search?q=vanshika+parmar",
     ocid: "contact.goodreads.button",
     color: "hover:text-amber-400",
   },
@@ -51,8 +51,8 @@ export default function ContactSection() {
           {/* Invite text */}
           <p className="font-body text-base leading-relaxed text-muted-foreground mb-12 max-w-xl mx-auto">
             Follow her journey through the airwaves and the written word. Be the
-            first to know about new stories, radio shows, and glimpses behind
-            the shadows.
+            first to know about new stories, shows, and glimpses behind the
+            shadows.
           </p>
 
           {/* Social buttons */}
