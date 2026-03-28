@@ -110,7 +110,7 @@ export default function App() {
       {page === "audioBooks" && <AudioBooksPage onNavigateTo={navigateTo} />}
       {page === "blogs" && <BlogsPage onNavigateTo={navigateTo} />}
 
-      <Footer />
+      <Footer onNavigateTo={navigateTo} />
     </div>
   );
 }

@@ -1,8 +1,15 @@
-export default function Footer() {
+interface FooterProps {
+  onNavigateTo: (page: string) => void;
+}
+
+export default function Footer({ onNavigateTo }: FooterProps) {
   const year = new Date().getFullYear();
   const hostname =
     typeof window !== "undefined" ? window.location.hostname : "";
   const caffeineUrl = `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`;
+
+  const linkClass =
+    "font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-200 cursor-pointer bg-transparent border-none p-0";
 
   return (
     <footer className="bg-card border-t border-border">
@@ -22,34 +29,38 @@ export default function Footer() {
 
           {/* Quick links */}
           <nav className="flex flex-wrap gap-x-8 gap-y-2">
-            <a
-              href="#about"
+            <button
+              type="button"
               data-ocid="footer.about.link"
-              className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-200"
+              onClick={() => onNavigateTo("about")}
+              className={linkClass}
             >
               About
-            </a>
-            <a
-              href="#books"
+            </button>
+            <button
+              type="button"
               data-ocid="footer.books.link"
-              className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-200"
+              onClick={() => onNavigateTo("booksLanguage")}
+              className={linkClass}
             >
               Books
-            </a>
-            <a
-              href="#advertise"
-              data-ocid="footer.advertise.link"
-              className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-200"
+            </button>
+            <button
+              type="button"
+              data-ocid="footer.partner.link"
+              onClick={() => onNavigateTo("partner")}
+              className={linkClass}
             >
-              Advertise
-            </a>
-            <a
-              href="#contact"
+              Partner
+            </button>
+            <button
+              type="button"
               data-ocid="footer.contact.link"
-              className="font-body text-xs tracking-widest uppercase text-muted-foreground hover:text-gold transition-colors duration-200"
+              onClick={() => onNavigateTo("contact")}
+              className={linkClass}
             >
               Contact
-            </a>
+            </button>
           </nav>
 
           {/* Decorative */}
