@@ -4,6 +4,7 @@ import {
   Calendar,
   Eye,
   Feather,
+  ImageIcon,
   Play,
 } from "lucide-react";
 import { motion } from "motion/react";
@@ -17,25 +18,22 @@ type Tab = "blogs" | "videos" | "poems";
 
 const blogPosts = [
   {
-    title: "The Night I Found My Voice",
-    date: "March 15, 2026",
-    excerpt:
-      "It wasn't on a grand stage or in front of thousands. It was a quiet evening, a microphone, and the terrifying realization that my voice could carry stories that mattered…",
-    readTime: "5 min read",
+    id: 1,
+    caption:
+      "Every story begins with a single word. Here's to the journey of finding mine — one voice, one page at a time. ✨🌹",
+    date: "March 2026",
   },
   {
-    title: "Ventriloquism: More Than a Trick",
-    date: "February 28, 2026",
-    excerpt:
-      "People often ask me what it feels like to give life to a puppet. The truth is, it's the puppet that gives something back to me — a kind of freedom you can't find anywhere else…",
-    readTime: "7 min read",
+    id: 2,
+    caption:
+      "Behind every puppet is a storyteller pouring their heart out. Ventriloquism is not a trick — it's a conversation with your own soul. 🎭",
+    date: "March 2026",
   },
   {
-    title: "Writing Mafia Crave: Behind the Story",
-    date: "January 10, 2026",
-    excerpt:
-      "Every story has a moment of birth. For Mafia Crave, it was a dream — a woman standing fearless before a man who had never known fear. That image refused to leave me…",
-    readTime: "6 min read",
+    id: 3,
+    caption:
+      "Words written at midnight carry a different kind of magic. Mafia Crave was born in one such hour. 🌙📖",
+    date: "February 2026",
   },
 ];
 
@@ -176,47 +174,47 @@ export default function BlogsPage({ onNavigateTo }: BlogsPageProps) {
           </button>
         </motion.div>
 
-        {/* Blog Posts Tab */}
+        {/* Blog Posts Tab — Photo Grid */}
         {activeTab === "blogs" && (
           <motion.div
             key="blogs"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="grid gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
             data-ocid="blogs.list"
           >
             {blogPosts.map((post, i) => (
               <motion.article
-                key={post.title}
+                key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 data-ocid={`blogs.item.${i + 1}`}
-                className="bg-card border border-crimson/20 rounded-2xl p-8 hover:border-crimson/50 transition-all duration-300 hover:shadow-[0_0_30px_oklch(0.45_0.22_15/0.15)] group"
+                className="bg-card border border-crimson/20 rounded-2xl overflow-hidden hover:border-crimson/50 transition-all duration-300 hover:shadow-[0_0_30px_oklch(0.45_0.22_15/0.15)] group"
               >
-                <div className="flex items-center gap-4 mb-4">
+                {/* Photo placeholder */}
+                <div className="relative w-full aspect-square bg-gradient-to-br from-crimson/40 via-background to-black flex flex-col items-center justify-center gap-3">
+                  <div className="absolute inset-0 bg-gradient-to-br from-crimson/30 via-transparent to-gold/10" />
+                  <ImageIcon
+                    size={40}
+                    className="relative z-10 text-crimson/60 group-hover:text-crimson/80 transition-colors"
+                  />
+                  <span className="relative z-10 font-body text-xs tracking-widest uppercase text-muted-foreground">
+                    Photo coming soon
+                  </span>
+                </div>
+
+                {/* Caption & date */}
+                <div className="p-6">
+                  <p className="font-body text-foreground leading-relaxed mb-4">
+                    {post.caption}
+                  </p>
                   <span className="flex items-center gap-1.5 font-body text-xs text-gold/70">
                     <Calendar size={12} />
                     {post.date}
                   </span>
-                  <span className="font-body text-xs text-muted-foreground">
-                    {post.readTime}
-                  </span>
                 </div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-crimson-light transition-colors">
-                  {post.title}
-                </h2>
-                <p className="font-body text-muted-foreground leading-relaxed mb-6">
-                  {post.excerpt}
-                </p>
-                <button
-                  type="button"
-                  data-ocid={`blogs.read.button.${i + 1}`}
-                  className="btn-crimson px-5 py-2 rounded-full border font-body text-xs tracking-widest uppercase transition-all"
-                >
-                  Read More →
-                </button>
               </motion.article>
             ))}
           </motion.div>
