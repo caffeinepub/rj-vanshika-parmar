@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AboutSection from "./components/AboutSection";
 import AdvertiseSection from "./components/AdvertiseSection";
 import AudioBooksPage from "./components/AudioBooksPage";
+import BlogsPage from "./components/BlogsPage";
 import BooksLanguagePage from "./components/BooksLanguagePage";
 import BooksSection from "./components/BooksSection";
 import ContactSection from "./components/ContactSection";
@@ -25,7 +26,8 @@ export type PageType =
   | "booksLanguage"
   | "hindiBooks"
   | "englishBooks"
-  | "audioBooks";
+  | "audioBooks"
+  | "blogs";
 
 export default function App() {
   const [isLight, setIsLight] = useState(() => {
@@ -57,7 +59,7 @@ export default function App() {
 
       {page === "home" && (
         <main className="pt-16">
-          <HeroSection />
+          <HeroSection onNavigateTo={navigateTo} />
           <BooksSection />
         </main>
       )}
@@ -106,6 +108,7 @@ export default function App() {
         <EnglishBooksPage onNavigateTo={navigateTo} />
       )}
       {page === "audioBooks" && <AudioBooksPage onNavigateTo={navigateTo} />}
+      {page === "blogs" && <BlogsPage onNavigateTo={navigateTo} />}
 
       <Footer />
     </div>

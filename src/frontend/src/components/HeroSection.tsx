@@ -1,7 +1,11 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  onNavigateTo: (page: string) => void;
+}
+
+export default function HeroSection({ onNavigateTo }: HeroSectionProps) {
   const [isLight, setIsLight] = useState(
     document.documentElement.classList.contains("light"),
   );
@@ -16,10 +20,6 @@ export default function HeroSection() {
     });
     return () => observer.disconnect();
   }, []);
-
-  const handleExplore = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -115,7 +115,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 1.0 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
-          onClick={handleExplore}
+          onClick={() => onNavigateTo("blogs")}
           data-ocid="hero.primary_button"
           className="inline-flex items-center gap-3 px-10 py-4 bg-neonpink text-white font-body text-sm tracking-widest uppercase shadow-neonpink hover:shadow-[0_0_32px_oklch(0.62_0.28_350/0.95),_0_0_60px_oklch(0.62_0.28_350/0.5)] transition-all duration-300 group"
         >

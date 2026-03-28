@@ -29,23 +29,15 @@ export default function NightRoseSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Logo with mist effect */}
+          {/* Logo with clean highlight glow */}
           <div className="inline-flex items-center justify-center mb-10">
             <div className="relative inline-flex items-center justify-center">
-              {/* Outer wide mist */}
-              <div className="absolute rounded-full blur-3xl bg-white/20 scale-[2.2] pointer-events-none inset-0" />
-              {/* Mid mist layer */}
-              <div className="absolute rounded-full blur-2xl bg-white/15 scale-[1.7] pointer-events-none inset-0" />
-              {/* Inner soft silver glow */}
-              <div className="absolute rounded-full blur-xl bg-white/20 scale-[1.4] pointer-events-none inset-0" />
-              {/* Gold accent haze */}
-              <div className="absolute rounded-full blur-2xl bg-amber-200/15 scale-[1.5] pointer-events-none inset-0" />
-              {/* Close silver shimmer */}
-              <div className="absolute rounded-full blur-md bg-white/10 scale-[1.15] pointer-events-none inset-0" />
+              {/* Single clean bright glow — lit from behind */}
+              <div className="absolute rounded-full bg-white/30 scale-110 blur-2xl pointer-events-none inset-0" />
               <img
                 src="/assets/uploads/1774642316477-019d30ed-497b-740a-b329-5e79adc37f40-1.png"
                 alt="Night Rose Publications"
-                className="relative w-72 h-72 object-contain"
+                className="relative w-96 h-96 object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.6)]"
               />
             </div>
           </div>

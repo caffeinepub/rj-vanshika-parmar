@@ -126,6 +126,18 @@ export default function Navigation({
               }}
             />
           </li>
+          {/* Blogs page link */}
+          <li>
+            <NavPill
+              label="Blogs"
+              ocid="nav.blogs.link"
+              isActive={page === "blogs"}
+              onClick={() => {
+                onNavigateTo("blogs");
+                setMobileOpen(false);
+              }}
+            />
+          </li>
         </ul>
 
         {/* Right controls */}
@@ -236,6 +248,21 @@ export default function Navigation({
                   }`}
                 >
                   Audio Books
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  data-ocid="nav.blogs.link"
+                  onClick={() => {
+                    onNavigateTo("blogs");
+                    setMobileOpen(false);
+                  }}
+                  className={`block font-body text-sm tracking-widest uppercase py-2 px-4 rounded-full border cursor-pointer w-full text-left transition-all ${
+                    page === "blogs" ? "btn-crimson-active" : "btn-crimson"
+                  }`}
+                >
+                  Blogs
                 </button>
               </li>
             </ul>
